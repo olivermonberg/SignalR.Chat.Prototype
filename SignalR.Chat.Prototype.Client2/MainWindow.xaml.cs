@@ -27,21 +27,25 @@ namespace SignalR.Chat.Prototype.Client2
     public partial class MainWindow : Window
     {
         public String UserName { get; set; }
+        public string GroupName { get; set; }
         public IHubProxy HubProxy { get; set; }
-        const string URI = "http://localhost:8080";
+        const string ServerURL = "http://localhost:8080";
         public HubConnection Connection { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            UserName = "User_2";
+            UserName = "Client_2";
+            GroupName = "grp1";
 
             Connect();
+
+            //HubProxy.Invoke("AddToGroup", (GroupName));
         }
 
         private void Connect()
         {
-            Connection = new HubConnection(URI + "/groupID", useDefaultUrl: false);
+            Connection = new HubConnection(ServerURL + "/chat", useDefaultUrl: false);
             HubProxy = Connection.CreateHubProxy("ChatHub");
 
             //Handle incoming event from server: use Invoke to write to console from SignalR's thread

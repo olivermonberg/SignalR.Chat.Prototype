@@ -2,6 +2,7 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,12 +12,12 @@ using Microsoft.Owin.Cors;
 using Microsoft.Owin.Hosting;
 using Microsoft.Owin.Host.HttpListener;
 
-namespace SignalR.Chat.Prototype.Server
+namespace SignalR.Chat.Prototype.Console
 {
     class Program
     {
-        //static public IDisposable SignalR { get; set; }
-        const string URI = "http://localhost:8080";
+        static public IDisposable SignalR { get; set; }
+        const string ServerURL = "http://localhost:8080";
 
         static void Main(string[] args)
         {
@@ -29,23 +30,24 @@ namespace SignalR.Chat.Prototype.Server
         {
             try
             {
-                /*SignalR = */WebApp.Start<Startup>(URI);
+                SignalR = WebApp.Start<Startup>(ServerURL);
             }
             catch (TargetInvocationException)
             {
-                System.Console.WriteLine("A server is already running at " + URI);
+                System.Console.WriteLine("A server is already running at " + ServerURL);
                 return;
             }
 
-            System.Console.WriteLine("Server started at " + URI);
+            System.Console.WriteLine("Server started at " + ServerURL);
         }
 }
 
     public class Startup
     {
+        public static string URI { get; set; } = "/chat";
         public void Configuration(IAppBuilder app)
         {
-            app.MapSignalR("/groupID", new HubConfiguration());
+            app.MapSignalR(URI, new HubConfiguration());
         }
     }
 }

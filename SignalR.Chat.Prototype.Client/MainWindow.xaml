@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SignalR.Chat.Prototype.Client"
         mc:Ignorable="d"
-        Title="Client1" Height="369.351" Width="425.732">
+        Title="Client1" Height="381" Width="425.732">
     <Grid>
         <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
