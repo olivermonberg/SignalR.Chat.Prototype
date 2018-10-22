@@ -19,7 +19,7 @@ using Microsoft.Owin.Cors;
 
 using Microsoft.Owin.Host.HttpListener;
 
-namespace SignalR.Chat.Prototype.Client2
+namespace SignalR.Chat.Prototype.Client3
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -35,12 +35,10 @@ namespace SignalR.Chat.Prototype.Client2
         public MainWindow()
         {
             InitializeComponent();
-            UserName = "Client_2";
-            roomName = "grpTest";
+            UserName = "Client_3";
+            roomName = "grpTest2";
 
             Connect();
-
-            //HubProxy.Invoke("AddToGroup", (GroupName));
         }
 
         private void Connect()

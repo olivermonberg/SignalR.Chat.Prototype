@@ -44,6 +44,7 @@ namespace SignalR.Chat.Prototype.Console
 
     public class Startup
     {
+        
         public static string URI { get; set; } = "/chat";
         public void Configuration(IAppBuilder app)
         {
