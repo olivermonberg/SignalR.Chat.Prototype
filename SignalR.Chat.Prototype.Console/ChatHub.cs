@@ -10,13 +10,13 @@ namespace SignalR.Chat.Prototype.Console
 {
     public class ChatHub : Hub
     {
-        public void Send(string UserName, string Msg, string roomName)
+        public Task Send(string UserName, string Msg, string roomName)
         {
             //Clients.All.broadcastMsg(UserName, Msg);
 
-            Clients.Group(roomName).broadcastMsg(UserName, Msg);
+            return Clients.Group(roomName).broadcastMsg(UserName, Msg);
 
-            System.Console.WriteLine($"{UserName}: {Msg}"); //Her skal der skrives til log/database for at loade chatten ved startup
+            //System.Console.WriteLine($"{UserName}: {Msg}"); //Her skal der skrives til log/database for at loade chatten ved startup
         }
 
         public Task JoinRoom(string roomName)

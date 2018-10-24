@@ -17,11 +17,11 @@ namespace SignalR.Chat.Prototype.Console
     class Program
     {
         static public IDisposable SignalR { get; set; }
-        const string ServerURL = "http://localhost:8080";
+        const string ServerURL = "*:443";
 
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Starting server...");
+            System.Console.WriteLine($"Starting server...\n{ServerURL}");
             Task.Run(() => StartServer());
             System.Console.ReadKey();
         }
@@ -32,9 +32,9 @@ namespace SignalR.Chat.Prototype.Console
             {
                 SignalR = WebApp.Start<Startup>(ServerURL);
             }
-            catch (TargetInvocationException)
+            catch (TargetInvocationException e)
             {
-                System.Console.WriteLine("A server is already running at " + ServerURL);
+                System.Console.WriteLine($"A server is already running at " + ServerURL + $"\nMsg: {e.Message}");
                 return;
             }
 
@@ -48,7 +48,22 @@ namespace SignalR.Chat.Prototype.Console
         public static string URI { get; set; } = "/chat";
         public void Configuration(IAppBuilder app)
         {
+            app.UseCors(CorsOptions.AllowAll);
             app.MapSignalR(URI, new HubConfiguration());
+
+
+            //app.Map(URI , map =>
+            //{
+            //    map.UseCors(CorsOptions.AllowAll);
+            //
+            //    var hubConfiguration = new HubConfiguration
+            //    {
+            //        EnableDetailedErrors = true,
+            //        EnableJSONP = true
+            //    };
+            //
+            //    map.RunSignalR(hubConfiguration);
+            //});
         }
     }
 }
