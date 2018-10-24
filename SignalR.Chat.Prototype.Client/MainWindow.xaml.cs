@@ -32,7 +32,7 @@ namespace SignalR.Chat.Prototype.Client
         public String roomName { get; set; }
         public IHubProxy HubProxy { get; set; }
         //const string ServerURL = "http://localhost:8080";
-        const string ServerURL = "http://192.168.43.112:443";
+        const string ServerURL = "http://192.168.43.112:9095";
         public HubConnection Connection { get; set; }
 
         public MainWindow()

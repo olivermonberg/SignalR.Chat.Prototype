@@ -30,7 +30,7 @@ namespace SignalR.Chat.Prototype.Client3
         public string roomName { get; set; }
         public IHubProxy HubProxy { get; set; }
         //const string ServerURL = "http://localhost:8080";
-        const string ServerURL = "http://85.218.241.69:8080";
+        const string ServerURL = "http://127.0.0.1:9095";
         public HubConnection Connection { get; set; }
 
         public MainWindow()

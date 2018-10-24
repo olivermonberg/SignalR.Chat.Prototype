@@ -17,7 +17,7 @@ namespace SignalR.Chat.Prototype.Console
     class Program
     {
         static public IDisposable SignalR { get; set; }
-        const string ServerURL = "*:443";
+        const string ServerURL = ":9095";
 
         static void Main(string[] args)
         {
@@ -28,9 +28,15 @@ namespace SignalR.Chat.Prototype.Console
 
         private static void StartServer()
         {
+            StartOptions options = new StartOptions();
+            //options.Urls.Add("http://localhost:9095");
+            options.Urls.Add("http://85.218.241.69:9095");
+            options.Urls.Add(string.Format("http://{0}:9095", Environment.MachineName));
+
+            
             try
             {
-                SignalR = WebApp.Start<Startup>(ServerURL);
+                WebApp.Start<Startup>(options);
             }
             catch (TargetInvocationException e)
             {
