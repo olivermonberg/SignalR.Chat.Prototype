@@ -30,7 +30,7 @@ namespace SignalR.Chat.Prototype.Console
         {
             StartOptions options = new StartOptions();
             //options.Urls.Add("http://localhost:9095");
-            options.Urls.Add("http://85.218.241.69:9095");
+            options.Urls.Add("http://192.168.87.112:9095");
             options.Urls.Add(string.Format("http://{0}:9095", Environment.MachineName));
 
             
